@@ -1,7 +1,5 @@
 import json
-from copy import deepcopy
 from pprint import pprint
-
 
 def check_adjancency(word: str, sub_word: str) -> int:
     last_letter = word[-1] if word[-1] not in ('ь', 'ъ') else word[-2]
@@ -48,17 +46,18 @@ def start_pathfinding():
         else:
             continue
 
-    print(','.join([cities[i] for i in visited_tops]))
+    print(','.join([init_cities[i] for i in visited_tops]))
 
 
 if __name__ == '__main__':
     with open('input.json', 'r', encoding='utf-8') as jdata:
-        cities = json.load(jdata)
+        init_cities = json.load(jdata)
 
-    size = len(cities)
-    cities = [cities[i].lower() for i in range(size)]
-    adjacency_matrix = [[0 if i == j else check_adjancency(word, sub_word)  for j, sub_word in enumerate(cities)]
+    size = len(init_cities)
+    cities = [init_cities[i].lower() for i in range(size)]
+    adjacency_matrix = [[0 if i == j else check_adjancency(word, sub_word) for j, sub_word in enumerate(cities)]
                         for i, word in enumerate(cities)]
+    pprint(adjacency_matrix) 
     visited_tops = list()
     start_pathfinding()
 
