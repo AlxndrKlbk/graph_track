@@ -1,6 +1,7 @@
 import json
 from pprint import pprint
 
+
 def check_adjancency(word: str, sub_word: str) -> int:
     last_letter = word[-1] if word[-1] not in ('ь', 'ъ') else word[-2]
 
